@@ -31,11 +31,11 @@ const MovieDetails = () => {
         </div>
       </div>
       <div className="flex flex-wrap -mx-4 overflow-hidden sm:-mx-4 md:-mx-4 lg:-mx-4 xl:-mx-4 justify-center py-5">
-        <div className="my-4 px-4 w-1/2 overflow-hidden sm:my-4 sm:px-4 sm:w-1/2 md:my-4 md:px-4 md:w-1/2 lg:my-4 lg:px-4 lg:w-1/2 xl:my-4 xl:px-4 xl:w-1/2 flex justify-center">
+        <div className="my-4 px-4 overflow-hidden sm:my-4 sm:px-4 sm:w-1/2 md:my-4 md:px-4 md:w-1/2 lg:my-4 lg:px-4 lg:w-1/2 xl:my-4 xl:px-4 xl:w-1/2 flex justify-center">
           <img src={movie.Poster} alt="" />
         </div>
 
-        <div className="my-4 px-4 w-1/2 overflow-hidden sm:my-4 sm:px-4 sm:w-1/2 md:my-4 md:px-4 md:w-1/2 lg:my-4 lg:px-4 lg:w-1/2 xl:my-4 xl:px-4 xl:w-1/2">
+        <div className="my-4 px-4 overflow-hidden sm:my-4 sm:px-4 sm:w-1/2 md:my-4 md:px-4 md:w-1/2 lg:my-4 lg:px-4 lg:w-1/2 xl:my-4 xl:px-4 xl:w-1/2">
           <ul className="leading-10">
             <li>
               <span className="font-bold pr-4">Title:</span> {movie.Title}
@@ -66,7 +66,6 @@ const MovieDetails = () => {
             <li>
               <span className="font-bold pr-4">Language:</span> {movie.Language}
             </li>
-            <li>{movie.imdbID}</li>
           </ul>
           <div className="my-4 py-4">
             <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 mr-5 rounded inline-flex items-center">
