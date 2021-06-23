@@ -2,6 +2,7 @@ import Content from "../components/Content";
 import styled from "styled-components";
 import { UserIcon, CogIcon } from "@heroicons/react/outline";
 import Footer from "../components/Footer";
+import Cookies from "universal-cookie";
 
 const Component = styled.div`
   color: blue;
@@ -12,6 +13,8 @@ const Component = styled.div`
 `;
 
 const Menu = () => {
+  const cookies = new Cookies();
+
   return (
     <div className="min-h-screen bg-black text-gray-400">
       <div className="flex flex-col flex-grow">
@@ -21,28 +24,26 @@ const Menu = () => {
               <span className="flex flex-col ml-5 text-right">
                 <span className="truncate text-white tracking-wide pt-1">
                   <span>Hello, </span>
-                  <span className="font-semibold">Franklin</span>
+                  <span className="font-semibold">
+                    {cookies.get("firstname")}
+                  </span>
                 </span>
                 <span className="truncate text-gray-400 text-xs leading-none mt-2">
                   Editor
                 </span>
               </span>
-              <div className="pl-4">
-                <Component
-                  as="button"
-                  className="flex justify-center items-center"
-                >
-                  <UserIcon className="h-6 w-6 stroke-current text-black" />
-                </Component>
-              </div>
-              <div className="pl-4">
-                <Component
-                  as="button"
-                  className="flex justify-center items-center"
-                >
-                  <CogIcon className="h-6 w-6 stroke-current text-black" />
-                </Component>
-              </div>
+              <Component
+                as="button"
+                className="flex justify-center items-center ml-4"
+              >
+                <UserIcon className="h-6 w-6 stroke-current text-black" />
+              </Component>
+              <Component
+                as="button"
+                className="flex justify-center items-center ml-4"
+              >
+                <CogIcon className="h-6 w-6 stroke-current text-black" />
+              </Component>
             </div>
           </div>
         </div>

@@ -6,7 +6,10 @@ import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 
 const Home = () => {
+  //URL backend for movie list
   const baseUrl = "http://www.omdbapi.com/?s=star&apikey=55f8ec93";
+
+  //URLs movie types
   const horrorUrl = "http://www.omdbapi.com/?apikey=55f8ec93&s=horror";
   const comedyUrl = "http://www.omdbapi.com/?apikey=55f8ec93&s=comedy";
   const suspenseUrl = "http://www.omdbapi.com/?apikey=55f8ec93&s=suspense";
@@ -105,7 +108,7 @@ const Home = () => {
           ))}
         />
         <div className="px-2 my-5">
-          <h1 className="font-bold text-xl sm:text-xl md:text-2xl">Terror</h1>
+          <h1 className="font-bold text-xl sm:text-xl md:text-2xl">Horror</h1>
         </div>
         <AliceCarousel
           mouseTracking

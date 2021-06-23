@@ -2,16 +2,38 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { PlayIcon, SaveIcon } from "@heroicons/react/solid";
 import { useParams } from "react-router";
+import Cookies from "universal-cookie";
 
 const MovieDetails = () => {
+  const [data, setData] = useState([]);
+  const [movie, setMovie] = useState("");
+  const [movieListItem, setMovieListItem] = useState({
+    id: "",
+    imdbID: "",
+  });
+
   const tokenApi = "55f8ec93";
+
   let { id } = useParams();
   var idmovie = id;
+
+  const backendURL = "https://localhost:44387/api/movieusers";
+
   const baseUrl =
     "http://www.omdbapi.com/?i=" + idmovie + "&apikey=" + tokenApi;
-  const [movie, setMovie] = useState("");
+
+  const saveMovie = async () => {
+    try {
+      const response = await axios.post(backendURL, movieListItem);
+      setData(data.concat(response.data));
+      console.log(movieListItem);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
+    const cookies = new Cookies();
     const getByIdRequest = async () => {
       try {
         const response = await axios.get(baseUrl);
@@ -21,7 +43,8 @@ const MovieDetails = () => {
       }
     };
     getByIdRequest();
-  }, [baseUrl]);
+    setMovieListItem({ id: cookies.get("id"), imdbID: idmovie });
+  }, [baseUrl, idmovie]);
 
   return (
     <div>
@@ -68,7 +91,10 @@ const MovieDetails = () => {
             </li>
           </ul>
           <div className="my-4 py-4">
-            <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 mr-5 rounded inline-flex items-center">
+            <button
+              className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 mr-5 rounded inline-flex items-center"
+              onClick={saveMovie}
+            >
               <SaveIcon className="w-4 h-4 mr-2 text-black" />
               <span>Save</span>
             </button>
