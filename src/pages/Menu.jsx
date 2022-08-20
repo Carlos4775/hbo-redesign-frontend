@@ -1,7 +1,7 @@
 import React from "react";
 import Content from "../components/Content";
 import styled from "styled-components";
-import { SearchIcon } from "@heroicons/react/outline";
+import SearchIcon from "@heroicons/react/outline";
 import Footer from "../components/Footer";
 import Cookies from "universal-cookie";
 import hbologo from "../img/HBO-emblema.jpg";

@@ -1,19 +1,19 @@
-import React from "react";
 import {
-  LockClosedIcon,
   EyeIcon,
   EyeOffIcon,
+  LockClosedIcon,
   XIcon,
 } from "@heroicons/react/solid";
-import Cookies from "universal-cookie";
-import md5 from "md5";
-import axios from "axios";
-import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { React, useState } from "react";
+
 import ClipLoader from "react-spinners/ClipLoader";
+import Cookies from "universal-cookie";
+import axios from "axios";
+import backgroundlogin from "../img/background-login.jpg";
 import clsx from "clsx";
 import logohbo from "../img/hbo-black-logo.png";
-import backgroundlogin from "../img/background-login.jpg";
+import md5 from "md5";
+import useHistory from "react-router-dom";
 
 const Login = () => {
   const [isPasswordShown, setIsPasswordShown] = useState(false);

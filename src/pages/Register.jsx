@@ -1,5 +1,5 @@
 import React from "react";
-import { LockClosedIcon } from "@heroicons/react/solid";
+import LockClosedIcon from "@heroicons/react/solid";
 import logohbo from "../img/hbo-black-logo.png";
 import backgroundregister from "../img/background-signup.jpg";
 

@@ -1,9 +1,8 @@
-import React from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { PlayIcon, SaveIcon, ArrowLeftIcon } from "@heroicons/react/solid";
-import { useParams } from "react-router";
+import { React, useEffect, useState } from "react";
 import Cookies from "universal-cookie";
+import { ArrowLeftIcon, PlayIcon, SaveIcon } from "@heroicons/react/solid";
+import { useParams } from "react-router";
 import { useHistory } from "react-router-dom";
 
 const MovieDetails = () => {

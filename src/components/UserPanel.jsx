@@ -1,5 +1,4 @@
-import React from "react";
-import { Fragment } from "react";
+import { React, Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import styled from "styled-components";
 import { UserIcon } from "@heroicons/react/outline";
