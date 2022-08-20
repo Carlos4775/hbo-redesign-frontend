@@ -3,7 +3,7 @@ import React from "react";
 const Item = ({ title, poster, setOnClick }) => {
   return (
     <div className="my-2 px-2 overflow-hidden">
-      <div className="cursor-pointer" onClick={setOnClick}>
+      <div className="cursor-pointer" onClick={setOnClick} aria-hidden="true">
         <img
           src={poster}
           alt={title}

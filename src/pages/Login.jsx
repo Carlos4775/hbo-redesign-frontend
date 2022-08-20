@@ -84,6 +84,7 @@ const Login = () => {
         src={logohbo}
         alt="hbo logo"
         onClick={() => window.location.replace("")}
+        aria-hidden="true"
       />
       <div
         className="max-w-md w-full space-y-8 shadow rounded-md"
