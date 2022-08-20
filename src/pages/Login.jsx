@@ -47,7 +47,6 @@ const Login = () => {
       .then((response) => {
         if (response.length > 0) {
           var respuesta = response[0];
-          console.log(respuesta);
           cookies.set("id", respuesta.id, { path: "/" });
           cookies.set("firstname", respuesta.firstname, { path: "/" });
           cookies.set("lastname", respuesta.lastname, { path: "/" });
@@ -73,7 +72,6 @@ const Login = () => {
       ...form,
       [name]: value,
     });
-    console.log(form);
   };
 
   return (

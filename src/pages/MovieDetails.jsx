@@ -72,7 +72,6 @@ const MovieDetails = () => {
     };
     getByIdRequest();
   }, [baseUrl, idmovie]);
-  console.log(movieListItem.status);
   return (
     <div>
       <div className="flex flex-wrap overflow-hidden relative">
