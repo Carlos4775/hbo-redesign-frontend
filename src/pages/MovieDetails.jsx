@@ -15,17 +15,16 @@ const MovieDetails = () => {
     status: false,
   });
 
-  let history = useHistory();
+  const history = useHistory();
 
   const tokenApi = "55f8ec93";
 
-  let { id } = useParams();
-  var idmovie = id;
+  const { id } = useParams();
+  const idmovie = id;
 
   const backendURL = "https://localhost:44387/api/movieusers";
 
-  const baseUrl =
-    "http://www.omdbapi.com/?i=" + idmovie + "&apikey=" + tokenApi;
+  const baseUrl = `http://www.omdbapi.com/?i=${idmovie}&apikey=${tokenApi}`;
 
   const saveMovie = async () => {
     try {
@@ -39,11 +38,11 @@ const MovieDetails = () => {
   const removeMovie = async () => {
     try {
       const response = await axios.put(
-        backendURL + "/" + movieListItem.id,
+        `${backendURL}/${movieListItem.id}`,
         movieListItem
       );
-      var respuesta = response.data;
-      var dataAuxiliar = movie;
+      const respuesta = response.data;
+      const dataAuxiliar = movie;
       dataAuxiliar.map((data) => {
         if (data.id === respuesta.id) {
           data.status = !movieListItem.status;
@@ -59,12 +58,12 @@ const MovieDetails = () => {
     const getByIdRequest = async () => {
       try {
         const response = await axios.get(baseUrl);
-        var poster = response.data.Poster;
+        const poster = response.data.Poster;
         setMovie(response.data);
         setMovieListItem({
           id: cookies.get("id"),
           imdbID: idmovie,
-          poster: poster,
+          poster,
         });
       } catch (error) {
         console.log(error);

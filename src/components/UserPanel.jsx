@@ -19,7 +19,7 @@ const Component = styled.div`\
 const UserPanel = () => {
   const cookies = new Cookies();
   const history = useHistory();
-  let path = `home`;
+  const path = `home`;
   const redirect = () => {
     history.replace(
       `/home/account/${cookies.get("id")}`,

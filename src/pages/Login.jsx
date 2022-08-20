@@ -20,7 +20,7 @@ const Login = () => {
   const [isPasswordEmpty, setIsPasswordEmpty] = useState(true);
   const [showLoader, setShowLoader] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-  let [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   //Backend url
   const baseUrl = "https://localhost:44387/api/users";
@@ -30,9 +30,9 @@ const Login = () => {
     password: "",
   });
 
-  let history = useHistory();
-  let path = "home";
-  let validationMessage = "Please fill out this field.";
+  const history = useHistory();
+  const path = "home";
+  const validationMessage = "Please fill out this field.";
 
   const redirect = () => history.push(path);
 
@@ -40,13 +40,13 @@ const Login = () => {
     form.username === "" ? setIsUsernameEmpty(false) : setIsUsernameEmpty(true);
     form.password === "" ? setIsPasswordEmpty(false) : setIsPasswordEmpty(true);
     await axios
-      .get(baseUrl + `/${form.username}/${md5(form.password)}`)
+      .get(`${baseUrl}/${form.username}/${md5(form.password)}`)
       .then((response) => {
         return response.data;
       })
       .then((response) => {
         if (response.length > 0) {
-          var respuesta = response[0];
+          const respuesta = response[0];
           cookies.set("id", respuesta.id, { path: "/" });
           cookies.set("firstname", respuesta.firstname, { path: "/" });
           cookies.set("lastname", respuesta.lastname, { path: "/" });
@@ -67,7 +67,7 @@ const Login = () => {
   };
 
   const handleChange = (e) => {
-    let { name, value } = e.target;
+    const { name, value } = e.target;
     setForm({
       ...form,
       [name]: value,

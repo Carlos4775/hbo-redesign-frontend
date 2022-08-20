@@ -9,7 +9,7 @@ import Cookies from "universal-cookie/es6";
 const Home = () => {
   const cookies = new Cookies();
   //URL backend for movie list
-  const backUrl = "https://localhost:44387/api/movieusers/" + cookies.get("id");
+  const backUrl = `https://localhost:44387/api/movieusers/${cookies.get("id")}`;
 
   //URLs movie types
   const horrorUrl = "http://www.omdbapi.com/?apikey=55f8ec93&s=horror";
@@ -68,8 +68,8 @@ const Home = () => {
     }
   };
 
-  let history = useHistory();
-  let path = `home`;
+  const history = useHistory();
+  const path = `home`;
 
   const responsive = {
     0: { items: 3 },
@@ -78,7 +78,7 @@ const Home = () => {
   };
 
   const redirect = (id) => {
-    history.push(path + "/" + id);
+    history.push(`${path}/${id}`);
   };
 
   useEffect(() => {
@@ -105,7 +105,7 @@ const Home = () => {
               items={movie.map((gestor, i) => (
                 <Item
                   title={gestor.Title}
-                  year={"Año: " + gestor.Year}
+                  year={`Año: ${gestor.Year}`}
                   poster={gestor.poster}
                   setOnClick={() => redirect(gestor.imdbID)}
                   key={i}
@@ -124,7 +124,7 @@ const Home = () => {
           items={horrorMovie.map((gestor, i) => (
             <Item
               title={gestor.Title}
-              year={"Año: " + gestor.Year}
+              year={`Año: ${gestor.Year}`}
               poster={gestor.Poster}
               setOnClick={() => redirect(gestor.imdbID)}
               key={i}
@@ -141,7 +141,7 @@ const Home = () => {
           items={suspenseMovie.map((gestor, i) => (
             <Item
               title={gestor.Title}
-              year={"Año: " + gestor.Year}
+              year={`Año: ${gestor.Year}`}
               poster={gestor.Poster}
               setOnClick={() => redirect(gestor.imdbID)}
               key={i}
@@ -159,7 +159,7 @@ const Home = () => {
         items={comedyMovie.map((gestor, i) => (
           <Item
             title={gestor.Title}
-            year={"Año: " + gestor.Year}
+            year={`Año: ${gestor.Year}`}
             poster={gestor.Poster}
             setOnClick={() => redirect(gestor.imdbID)}
             key={i}
@@ -169,7 +169,7 @@ const Home = () => {
       />
       <div className="px-2 my-5">
         <h1 className="font-bold text-xl sm:text-xl md:text-2xl">
-          Child's movies
+          Child&apos;s movies
         </h1>
       </div>
       <AliceCarousel
@@ -178,7 +178,7 @@ const Home = () => {
         items={childMovie.map((gestor, i) => (
           <Item
             title={gestor.Title}
-            year={"Año: " + gestor.Year}
+            year={`Año: ${gestor.Year}`}
             poster={gestor.Poster}
             setOnClick={() => redirect(gestor.imdbID)}
             key={i}
