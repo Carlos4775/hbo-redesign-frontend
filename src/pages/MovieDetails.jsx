@@ -1,3 +1,4 @@
+import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { PlayIcon, SaveIcon, ArrowLeftIcon } from "@heroicons/react/solid";
@@ -43,9 +44,9 @@ const MovieDetails = () => {
       );
       const respuesta = response.data;
       const dataAuxiliar = movie;
-      dataAuxiliar.map((data) => {
-        if (data.id === respuesta.id) {
-          data.status = !movieListItem.status;
+      dataAuxiliar.map((dataAuxiliarItem) => {
+        if (dataAuxiliarItem.id === respuesta.id) {
+          dataAuxiliarItem.status = !movieListItem.status;
         }
       });
     } catch (error) {

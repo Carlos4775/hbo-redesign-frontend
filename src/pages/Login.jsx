@@ -1,3 +1,4 @@
+import React from "react";
 import {
   LockClosedIcon,
   EyeIcon,
@@ -59,10 +60,6 @@ const Login = () => {
         } else {
           setShowAlert(true);
         }
-      })
-
-      .catch((error) => {
-        console.log(error);
       });
   };
 

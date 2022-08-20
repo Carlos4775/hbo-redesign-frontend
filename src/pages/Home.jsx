@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import Item from "../components/Item";
@@ -102,13 +103,13 @@ const Home = () => {
             <AliceCarousel
               mouseTracking
               responsive={responsive}
-              items={movie.map((gestor, i) => (
+              items={movie.map((gestor) => (
                 <Item
                   title={gestor.Title}
                   year={`Año: ${gestor.Year}`}
                   poster={gestor.poster}
                   setOnClick={() => redirect(gestor.imdbID)}
-                  key={i}
+                  key={gestor.imdbID}
                   noText
                 />
               ))}
@@ -121,13 +122,13 @@ const Home = () => {
         <AliceCarousel
           mouseTracking
           responsive={responsive}
-          items={horrorMovie.map((gestor, i) => (
+          items={horrorMovie.map((gestor) => (
             <Item
               title={gestor.Title}
               year={`Año: ${gestor.Year}`}
               poster={gestor.Poster}
               setOnClick={() => redirect(gestor.imdbID)}
-              key={i}
+              key={gestor.imdbID}
               noText
             />
           ))}
@@ -138,13 +139,13 @@ const Home = () => {
         <AliceCarousel
           mouseTracking
           responsive={responsive}
-          items={suspenseMovie.map((gestor, i) => (
+          items={suspenseMovie.map((gestor) => (
             <Item
               title={gestor.Title}
               year={`Año: ${gestor.Year}`}
               poster={gestor.Poster}
               setOnClick={() => redirect(gestor.imdbID)}
-              key={i}
+              key={gestor.imdbID}
               noText
             />
           ))}
@@ -156,13 +157,13 @@ const Home = () => {
       <AliceCarousel
         mouseTracking
         responsive={responsive}
-        items={comedyMovie.map((gestor, i) => (
+        items={comedyMovie.map((gestor) => (
           <Item
             title={gestor.Title}
             year={`Año: ${gestor.Year}`}
             poster={gestor.Poster}
             setOnClick={() => redirect(gestor.imdbID)}
-            key={i}
+            key={gestor.imdbID}
             noText
           />
         ))}
@@ -175,13 +176,13 @@ const Home = () => {
       <AliceCarousel
         mouseTracking
         responsive={responsive}
-        items={childMovie.map((gestor, i) => (
+        items={childMovie.map((gestor) => (
           <Item
             title={gestor.Title}
             year={`Año: ${gestor.Year}`}
             poster={gestor.Poster}
             setOnClick={() => redirect(gestor.imdbID)}
-            key={i}
+            key={gestor.imdbID}
             noText
           />
         ))}

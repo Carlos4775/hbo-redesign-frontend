@@ -1,3 +1,5 @@
+import React from "react";
+
 const Footer = () => {
   return (
     <div className="grid justify-items-center px-4 py-6 text-sm text-white">

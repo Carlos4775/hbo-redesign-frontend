@@ -1,3 +1,4 @@
+import React from "react";
 import Content from "../components/Content";
 import styled from "styled-components";
 import { SearchIcon } from "@heroicons/react/outline";

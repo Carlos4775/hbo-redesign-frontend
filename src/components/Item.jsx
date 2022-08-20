@@ -1,3 +1,5 @@
+import React from "react";
+
 const Item = ({ title, poster, setOnClick }) => {
   return (
     <div className="my-2 px-2 overflow-hidden">
