@@ -1,21 +1,40 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import styled from "styled-components";
-import { CogIcon } from "@heroicons/react/outline";
+import { UserIcon } from "@heroicons/react/outline";
+import Cookies from "universal-cookie/es6";
+import { useHistory } from "react-router-dom";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const Component = styled.div`
-  color: blue;
+const Component = styled.div`\
   border-radius: 50%;
   width: 40px;
   height: 40px;
   background-color: #fff;
 `;
 
-const ConfigPanel = () => {
+const UserPanel = () => {
+  const cookies = new Cookies();
+  const history = useHistory();
+  let path = `home`;
+  const redirect = () => {
+    history.replace(
+      `/home/account/${cookies.get("id")}`,
+      `${path}/account/${cookies.get("id")}`
+    );
+  };
+
+  const logout = () => {
+    cookies.remove("id", { path: "/" });
+    cookies.remove("firstname", { path: "/" });
+    cookies.remove("lastname", { path: "/" });
+    cookies.remove("username", { path: "/" });
+    cookies.remove("password", { path: "/" });
+    history.push("/");
+  };
   return (
     <Menu as="div" className="relative inline-block text-left">
       {({ open }) => (
@@ -23,7 +42,7 @@ const ConfigPanel = () => {
           <div>
             <Menu.Button>
               <Component className="flex justify-center items-center">
-                <CogIcon className="h-6 w-6 stroke-current text-black" />
+                <UserIcon className="h-6 w-6 stroke-current text-black" />
               </Component>
             </Menu.Button>
           </div>
@@ -43,7 +62,7 @@ const ConfigPanel = () => {
               className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-30"
             >
               <div className="py-1">
-                <Menu.Item>
+                <Menu.Item onClick={redirect}>
                   {({ active }) => (
                     <span
                       className={classNames(
@@ -51,7 +70,7 @@ const ConfigPanel = () => {
                         "block px-4 py-2 text-sm"
                       )}
                     >
-                      Account settings
+                      Account information
                     </span>
                   )}
                 </Menu.Item>
@@ -63,7 +82,7 @@ const ConfigPanel = () => {
                         "block px-4 py-2 text-sm"
                       )}
                     >
-                      Support
+                      Appearance
                     </span>
                   )}
                 </Menu.Item>
@@ -75,11 +94,11 @@ const ConfigPanel = () => {
                         "block px-4 py-2 text-sm"
                       )}
                     >
-                      License
+                      Change avatar
                     </span>
                   )}
                 </Menu.Item>
-                <Menu.Item>
+                <Menu.Item onClick={logout}>
                   {({ active }) => (
                     <span
                       className={classNames(
@@ -87,7 +106,7 @@ const ConfigPanel = () => {
                         "block px-4 py-2 text-sm"
                       )}
                     >
-                      Help center
+                      Log out
                     </span>
                   )}
                 </Menu.Item>
@@ -100,4 +119,4 @@ const ConfigPanel = () => {
   );
 };
 
-export default ConfigPanel;
+export default UserPanel;

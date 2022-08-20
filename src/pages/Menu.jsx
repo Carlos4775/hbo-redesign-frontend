@@ -1,11 +1,13 @@
 import Content from "../components/Content";
 import styled from "styled-components";
-import { UserIcon, CogIcon } from "@heroicons/react/outline";
+import { SearchIcon } from "@heroicons/react/outline";
 import Footer from "../components/Footer";
 import Cookies from "universal-cookie";
+import hbologo from "../img/HBO-emblema.jpg";
+import ConfigPanel from "../components/ConfigPanel";
+import UserPanel from "../components/UserPanel";
 
 const Component = styled.div`
-  color: blue;
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -18,9 +20,15 @@ const Menu = () => {
   return (
     <div className="min-h-screen bg-black text-gray-400">
       <div className="flex flex-col flex-grow">
-        <div className="p-4">
+        <div className="p-4 relative">
           <div className="flex items-center flex-row">
             <div className="flex ml-auto">
+              <span className="flex flex-col ml-5 text-right">
+                <span className="text-white pt-3">
+                  <SearchIcon className="h-6 w-6 text-yellow-50 invisible sm:visible md:visible cursor-pointer" />
+                </span>
+              </span>
+
               <span className="flex flex-col ml-5 text-right">
                 <span className="truncate text-white tracking-wide pt-1">
                   <span>Hello, </span>
@@ -32,19 +40,20 @@ const Menu = () => {
                   Editor
                 </span>
               </span>
-              <Component
-                as="button"
-                className="flex justify-center items-center ml-4"
-              >
-                <UserIcon className="h-6 w-6 stroke-current text-black" />
+              <Component className="flex justify-center items-center ml-4">
+                <UserPanel />
               </Component>
-              <Component
-                as="button"
-                className="flex justify-center items-center ml-4"
-              >
-                <CogIcon className="h-6 w-6 stroke-current text-black" />
+              <Component className="flex justify-center items-center ml-4">
+                <ConfigPanel />
               </Component>
             </div>
+          </div>
+          <div className="absolute top-4 left-16 cursor-pointer">
+            <img
+              src={hbologo}
+              alt="logo HBO"
+              className="h-16 md:h-16 lg:h-20 invisible xs:visible sm:visible md:visible"
+            />
           </div>
         </div>
         <div className="flex flex-col flex-grow p-4">

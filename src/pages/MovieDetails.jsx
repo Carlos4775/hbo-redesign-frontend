@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { PlayIcon, SaveIcon } from "@heroicons/react/solid";
+import { PlayIcon, SaveIcon, ArrowLeftIcon } from "@heroicons/react/solid";
 import { useParams } from "react-router";
 import Cookies from "universal-cookie";
+import { useHistory } from "react-router-dom";
 
 const MovieDetails = () => {
   const [data, setData] = useState([]);
@@ -10,7 +11,11 @@ const MovieDetails = () => {
   const [movieListItem, setMovieListItem] = useState({
     id: "",
     imdbID: "",
+    poster: "",
+    status: false,
   });
+
+  let history = useHistory();
 
   const tokenApi = "55f8ec93";
 
@@ -26,7 +31,24 @@ const MovieDetails = () => {
     try {
       const response = await axios.post(backendURL, movieListItem);
       setData(data.concat(response.data));
-      console.log(movieListItem);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const removeMovie = async () => {
+    try {
+      const response = await axios.put(
+        backendURL + "/" + movieListItem.id,
+        movieListItem
+      );
+      var respuesta = response.data;
+      var dataAuxiliar = movie;
+      dataAuxiliar.map((data) => {
+        if (data.id === respuesta.id) {
+          data.status = !movieListItem.status;
+        }
+      });
     } catch (error) {
       console.log(error);
     }
@@ -37,28 +59,37 @@ const MovieDetails = () => {
     const getByIdRequest = async () => {
       try {
         const response = await axios.get(baseUrl);
+        var poster = response.data.Poster;
         setMovie(response.data);
+        setMovieListItem({
+          id: cookies.get("id"),
+          imdbID: idmovie,
+          poster: poster,
+        });
       } catch (error) {
         console.log(error);
       }
     };
     getByIdRequest();
-    setMovieListItem({ id: cookies.get("id"), imdbID: idmovie });
   }, [baseUrl, idmovie]);
-
+  console.log(movieListItem.status);
   return (
     <div>
-      <div className="flex flex-wrap overflow-hidden">
+      <div className="flex flex-wrap overflow-hidden relative">
         <div className="w-full overflow-hidden flex justify-center py-5">
-          <p className="text-xl font-bold">{movie.Title}</p>
+          <p className="text-xl font-bold pt-10 sm:pt-0">{movie.Title}</p>
         </div>
+        <ArrowLeftIcon
+          className="w-10 h-8 mr-2 absolute sm:left-5 sm:top-4 md:left-16 lg:left-36 cursor-pointer"
+          onClick={history.goBack}
+        />
       </div>
       <div className="flex flex-wrap -mx-4 overflow-hidden sm:-mx-4 md:-mx-4 lg:-mx-4 xl:-mx-4 justify-center py-5">
         <div className="my-4 px-4 overflow-hidden sm:my-4 sm:px-4 sm:w-1/2 md:my-4 md:px-4 md:w-1/2 lg:my-4 lg:px-4 lg:w-1/2 xl:my-4 xl:px-4 xl:w-1/2 flex justify-center">
           <img src={movie.Poster} alt="" />
         </div>
 
-        <div className="my-4 px-4 overflow-hidden sm:my-4 sm:px-4 sm:w-1/2 md:my-4 md:px-4 md:w-1/2 lg:my-4 lg:px-4 lg:w-1/2 xl:my-4 xl:px-4 xl:w-1/2">
+        <div className="my-4 px-4 overflow-hidden sm:my-4 sm:px-4  md:my-4 md:px-4 md:w-1/2 lg:my-4 lg:px-4 lg:w-1/2 xl:my-4 xl:px-4 xl:w-1/2">
           <ul className="leading-10">
             <li>
               <span className="font-bold pr-4">Title:</span> {movie.Title}
@@ -91,13 +122,24 @@ const MovieDetails = () => {
             </li>
           </ul>
           <div className="my-4 py-4">
-            <button
-              className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 mr-5 rounded inline-flex items-center"
-              onClick={saveMovie}
-            >
-              <SaveIcon className="w-4 h-4 mr-2 text-black" />
-              <span>Save</span>
-            </button>
+            {movieListItem.status ? (
+              <button
+                className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 mr-5 rounded inline-flex items-center"
+                onClick={removeMovie}
+              >
+                <SaveIcon className="w-4 h-4 mr-2 text-black" />
+                <span>Remove</span>
+              </button>
+            ) : (
+              <button
+                className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 mr-5 rounded inline-flex items-center"
+                onClick={saveMovie}
+              >
+                <SaveIcon className="w-4 h-4 mr-2 text-black" />
+                <span>Save</span>
+              </button>
+            )}
+
             <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
               <PlayIcon className="w-4 h-4 mr-2 text-black" />
               <span>Play</span>

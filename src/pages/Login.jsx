@@ -4,15 +4,15 @@ import {
   EyeOffIcon,
   XIcon,
 } from "@heroicons/react/solid";
-import logohbo from "../img/hbo-black-logo.png";
-import backgroundlogin from "../img/background-login.jpg";
-import md5 from "md5";
 import Cookies from "universal-cookie";
+import md5 from "md5";
 import axios from "axios";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import clsx from "clsx";
+import logohbo from "../img/hbo-black-logo.png";
+import backgroundlogin from "../img/background-login.jpg";
 
 const Login = () => {
   const [isPasswordShown, setIsPasswordShown] = useState(false);
@@ -20,17 +20,18 @@ const Login = () => {
   const [isPasswordEmpty, setIsPasswordEmpty] = useState(true);
   const [showLoader, setShowLoader] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+  let [loading, setLoading] = useState(false);
+
+  //Backend url
   const baseUrl = "https://localhost:44387/api/users";
   const cookies = new Cookies();
   const [form, setForm] = useState({
     username: "",
     password: "",
   });
-  let [loading, setLoading] = useState(false);
 
   let history = useHistory();
-  let path = `home`;
-
+  let path = "home";
   let validationMessage = "Please fill out this field.";
 
   const redirect = () => history.push(path);
@@ -120,7 +121,9 @@ const Login = () => {
             className="mx-8 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
             role="alert"
           >
-            <span class="block sm:inline">Incorrect username or password</span>
+            <span className="block sm:inline">
+              Incorrect username or password
+            </span>
             <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
               <XIcon
                 className="fill-current h-6 w-6 text-red-500"
