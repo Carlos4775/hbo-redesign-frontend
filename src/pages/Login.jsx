@@ -13,7 +13,7 @@ import backgroundlogin from "../img/background-login.jpg";
 import clsx from "clsx";
 import logohbo from "../img/hbo-black-logo.png";
 import md5 from "md5";
-import useHistory from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const [isPasswordShown, setIsPasswordShown] = useState(false);
@@ -38,6 +38,9 @@ const Login = () => {
   const redirect = () => history.push(path);
 
   const login = async () => {
+    if (form.username === "admin" && form.password === "admin") {
+      return redirect();
+    }
     form.username === "" ? setIsUsernameEmpty(false) : setIsUsernameEmpty(true);
     form.password === "" ? setIsPasswordEmpty(false) : setIsPasswordEmpty(true);
     await axios
@@ -109,6 +112,13 @@ const Login = () => {
               loading={showLoader && loading}
               size={50}
             />
+          </div>
+          <div
+            class="p-4 mx-8 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
+            role="alert"
+          >
+            <span class="font-medium">Info!</span> Use "admin" as a username and
+            password to login
           </div>
         </div>
         {/*Invalid data alert*/}

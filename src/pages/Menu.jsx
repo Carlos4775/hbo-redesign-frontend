@@ -1,12 +1,12 @@
-import React from "react";
-import Content from "../components/Content";
-import styled from "styled-components";
-import SearchIcon from "@heroicons/react/outline";
-import Footer from "../components/Footer";
-import Cookies from "universal-cookie";
-import hbologo from "../img/HBO-emblema.jpg";
 import ConfigPanel from "../components/ConfigPanel";
+import Content from "../components/Content";
+import Cookies from "universal-cookie";
+import Footer from "../components/Footer";
+import React from "react";
+import { SearchIcon } from "@heroicons/react/outline";
 import UserPanel from "../components/UserPanel";
+import hbologo from "../img/HBO-emblema.jpg";
+import styled from "styled-components";
 
 const Component = styled.div`
   border-radius: 50%;
@@ -34,7 +34,7 @@ const Menu = () => {
                 <span className="truncate text-white tracking-wide pt-1">
                   <span>Hello, </span>
                   <span className="font-semibold">
-                    {cookies.get("firstname")}
+                    {cookies.get("firstname") || "admin"}
                   </span>
                 </span>
                 <span className="truncate text-gray-400 text-xs leading-none mt-2">
@@ -50,11 +50,13 @@ const Menu = () => {
             </div>
           </div>
           <div className="absolute top-4 left-16 cursor-pointer">
-            <img
-              src={hbologo}
-              alt="logo HBO"
-              className="h-16 md:h-16 lg:h-20 invisible xs:visible sm:visible md:visible"
-            />
+            <a href="/home">
+              <img
+                src={hbologo}
+                alt="logo HBO"
+                className="h-16 md:h-16 lg:h-20 invisible xs:visible sm:visible md:visible"
+              />
+            </a>
           </div>
         </div>
         <div className="flex flex-col flex-grow p-4">

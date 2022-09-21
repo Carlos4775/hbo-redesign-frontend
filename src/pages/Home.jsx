@@ -1,10 +1,12 @@
-import { React, useEffect, useState, useCallback } from "react";
-import axios from "axios";
-import Item from "../components/Item";
-import { useHistory } from "react-router-dom";
-import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
+
+import { React, useCallback, useEffect, useState } from "react";
+
+import AliceCarousel from "react-alice-carousel";
 import Cookies from "universal-cookie/es6";
+import Item from "../components/Item";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const Home = () => {
   const cookies = new Cookies();
@@ -12,10 +14,10 @@ const Home = () => {
   const backUrl = `https://localhost:44387/api/movieusers/${cookies.get("id")}`;
 
   //URLs movie types
-  const horrorUrl = "http://www.omdbapi.com/?apikey=55f8ec93&s=horror";
-  const comedyUrl = "http://www.omdbapi.com/?apikey=55f8ec93&s=comedy";
-  const suspenseUrl = "http://www.omdbapi.com/?apikey=55f8ec93&s=suspense";
-  const childUrl = "http://www.omdbapi.com/?apikey=55f8ec93&s=disney";
+  const horrorUrl = "https://www.omdbapi.com/?apikey=55f8ec93&s=horror";
+  const comedyUrl = "https://www.omdbapi.com/?apikey=55f8ec93&s=comedy";
+  const suspenseUrl = "https://www.omdbapi.com/?apikey=55f8ec93&s=suspense";
+  const childUrl = "https://www.omdbapi.com/?apikey=55f8ec93&s=disney";
 
   const [movie, setMovie] = useState([]);
   const [horrorMovie, setHorrorMovie] = useState([]);

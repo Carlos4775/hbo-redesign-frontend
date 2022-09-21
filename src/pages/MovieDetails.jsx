@@ -1,9 +1,10 @@
-import axios from "axios";
-import { React, useEffect, useState } from "react";
-import Cookies from "universal-cookie";
 import { ArrowLeftIcon, PlayIcon, SaveIcon } from "@heroicons/react/solid";
-import { useParams } from "react-router";
+import { React, useEffect, useState } from "react";
+
+import Cookies from "universal-cookie";
+import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { useParams } from "react-router";
 
 const MovieDetails = () => {
   const [data, setData] = useState([]);
@@ -24,7 +25,7 @@ const MovieDetails = () => {
 
   const backendURL = "https://localhost:44387/api/movieusers";
 
-  const baseUrl = `http://www.omdbapi.com/?i=${idmovie}&apikey=${tokenApi}`;
+  const baseUrl = `https://www.omdbapi.com/?i=${idmovie}&apikey=${tokenApi}`;
 
   const saveMovie = async () => {
     try {
