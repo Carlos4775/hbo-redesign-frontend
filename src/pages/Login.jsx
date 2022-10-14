@@ -114,10 +114,10 @@ const Login = () => {
             />
           </div>
           <div
-            class="p-4 mx-8 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
+            className="p-4 mx-8 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
             role="alert"
           >
-            <span class="font-medium">Info!</span> Use "admin" as a username and
+            <span className="font-medium">Info!</span> Use "admin" as a username and
             password to login
           </div>
         </div>
